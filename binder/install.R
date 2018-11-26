@@ -2,6 +2,11 @@
 install.packages(c("rmarkdown", "caTools", "bitops")) # for knitting
 install.packages("dplyr")
 install.packages("ggplot2")
+install.packages("tidyverse")
+install.packages("broom")
+install.packages("stringr")
+install.packages("latex2exp")
+install.packages("readxl")
 
 # python from RMarkdown (not fully supported yet on binder)
 # install.packages("reticulate")
