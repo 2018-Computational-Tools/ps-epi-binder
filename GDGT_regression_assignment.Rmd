@@ -239,9 +239,9 @@ df %>%
 
 ## Comparing models
 
-![Kim et al, 2010 regression](data/kim_reg_2010.png){width=70%}
+![Kim et al, 2010 regression](data/kim_reg_2010.PNG){width=70%}
 
-![Kim et al, 2012 regression](data/kim_reg_2012.png){width=70%}
+![Kim et al, 2012 regression](data/kim_reg_2012.PNG){width=70%}
 
 Above are two temperature calibrations for $TEX_{86}^L$. The first is from Kim et al. 2010, which uses global SST. The second is an updated calibration from Kim et al. 2012 which uses an annual 200 m depth integration.
 
