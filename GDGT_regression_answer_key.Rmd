@@ -145,7 +145,7 @@ Iceland_TEX86_data
 
 1. Do you think it is valid to assume that the *Thaumarcheota*'s lipids will respond to the average annual sea surface temperature? Why or why not?
 
-Answer: The *Thaumarcheota* are more likely to respond to the temperature at the depth where they grow, and the temperature at the time of year when they grow. 
+Answer: No, the *Thaumarcheota* are more likely to respond to the temperature at the depth where they grow, and the temperature at the time of year when they grow. 
 
 In the dataframe you loaded above, you have been provided seasonal and annual temperature depth integrations. Run the following code chunk to generate linear regressions for each temperature profile.
 
@@ -208,17 +208,17 @@ models %>%
 
 2. Which season(s) and integrated depth(s) of temperature has the most robust relationship with GDGT cyclization?
 
-Answer: 
+Answer: The highest adjusted $r^2$ value is found for Winter temperatures at with depth integration to ~150-200 m. (Incidentally, evaluating the model on the basis of any of the other regression statistic yields a simillar result).
 
 3. What can you infer about GDGT production and preservation at these sites based on how the correlation depends on season and depth integration?
 
-Answer: 
+Answer: Since the strongest correlation is observed between $TEX_{86}^L$ and the Winter temperature integrated over large depth, it appears that *Thaumarchareota* growth and GDGT production occurs throughout the water column, perhaps especially in winter. 
 
 ## Calculate the most robust regression for modern Iceland surface sediment
 
 4. Using your plot from the previous problem, choose one integrated depth and season for your local calibration. Justify your choice.
 
-Answer: 
+Answer: Any of the models of $TEX_{86}^L$ for winter, and with depth integration > ~50 m would be appropriate. 
 
 
 Use the function lm() to run a linear regression for your chosen temperature profile and save this regression as "best_model." Then plot your regression model using geom_lm().
@@ -247,15 +247,15 @@ Above are two temperature calibrations for $TEX_{86}^L$. The first is from Kim e
 
 5. How do these calibrations compare with your local calibration (e.g. temperature range, $r^2$)? How can you explain these differences?
 
-Answer:
+Answer: The local calibration is confined to a much smaller temperature interval, since the ocean temperarature in Iceland is relatively cool. The slope of the local calibration is also lower, suggesting variation in the $TEX_{86}^L$-T relationship between localities. The degree of fit is better than the global calibrations, supporting the conclusions that the relationship varies with locality. 
 
 6. From examining the plots above, what would you estimate the overall error associated with a temperature estimate from $TEX_{86}^L$ to be? How does this compare to your local model?
 
-Answer:
+Answer: The error in temperature inferred from the global calibrations is perhaps +/- 5 °C, especially at the lower temperatures that the local calibration covers. The error on the local calibration is +/- <2 °C.
 
 7. Would the uncertainty estimate vary depending on the measured $TEX_{86}^L$ value?
 
-Answer:
+Answer: Certainly for the global calibrations, where the error/uncertainty is elevated at low temperatures (< 20 °C).
 
 
 ## Application of models to an Iceland core
@@ -293,13 +293,17 @@ data %>%
              ymax = estimate + error)) + 
   geom_line() +
   geom_point() +
-  geom_errorbar()
+  geom_errorbar() +
+  labs(
+    x = "Year",
+    y = "Estimated Temperature (°C)"
+  )
 
 ```
 
 8. What effect does applying a local calibration have on the relative and absolute GDGT-derived temperatures?
 
-Answer:
+Answer: The temperature estimate is systematically higher with the local calibration. The variation in the record is also dampened. 
 
 # References
 Harning, D.J., Sepúlveda, J., Cabedo-Sanz, P., Andrews, J.T., Belt, S.T., Dildar, N., Geirsdóttir, Á., Miller, G.H.(2018). Sea ice control on winter subsurface temperatures of the North Iceland Shelf over the last millennium. Paleoceanography and Paleoclimatology, submitted. 
