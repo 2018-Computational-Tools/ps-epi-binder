@@ -293,7 +293,11 @@ data %>%
              ymax = ??? + ???)) + 
   geom_line() +
   geom_point() +
-  geom_errorbar()
+  geom_errorbar() +
+  labs(
+    x = "Year",
+    y = "Estimated Temperature (°C)"
+  )
 
 ```
 
