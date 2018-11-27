@@ -97,25 +97,25 @@ ojo %>%
 Plot some more combinations of variables from the Ojo Caliente data set and choose a correlation to fit with a linear regression. 
 
 ```{r warning = FALSE}
-ojo %>% # Hint: explore ojo by running `ojo` on its own.
-  ggplot(aes(x = ???, y = ???)) + # Hint: Use backticks (``) around variable names.
-  geom_point() 
+#ojo %>% # Hint: explore ojo by running `ojo` on its own.
+  #ggplot(aes(x = ???, y = ???)) + # Hint: Use backticks (``) around variable names.
+  #geom_point() 
 ```
 
 Once you've chosen the variables you would like to regress, use `lm()` to calculate a linear regression. `glance()` is a useful function for printing an overview of the model. 
 ```{r}
 # Simple linear models have the form y ~ x
-ojo_lm <- lm(??? ~ ???, data = ojo) # Hint: Same variables as above. 
+#ojo_lm <- lm(??? ~ ???, data = ojo) # Hint: Same variables as above. 
 
-glance(ojo_lm)
+#glance(ojo_lm)
 ```
 
 Now let's plot your linear regression with the data. We've provided a function `geom_lm()` that adds a fit, as well as confidence intervals ($1\sigma$, blue) and prediction intervals ($1\sigma$, red), for convenience. 
 ```{r warning = FALSE}
-ojo %>% 
-  ggplot(aes(x = ???, y = ???)) + # Hint: Same variables as above. 
-  geom_point() +
-  geom_lm(ojo_lm) # Hint: geom_lm() needs your linear model. 
+#ojo %>% 
+  #ggplot(aes(x = ???, y = ???)) + # Hint: Same variables as above. 
+  #geom_point() +
+  #geom_lm(ojo_lm) # Hint: geom_lm() needs your linear model. 
 
 ```
 
@@ -202,15 +202,15 @@ Take a look at the `models` data frame this has generated to explore the statist
 To compare the regressions for each temperature profile, plot the **adjusted** $r^2$ value of each regression vs depth, using color to denote season. 
 
 ```{r warning = FALSE}
-models %>% 
-  arrange(depth) %>% 
-  ggplot(aes(x = ???, y = ???, color = ???)) + # Hint: what variables should be in the plot?
-  geom_line() + 
-  geom_point() + 
-  coord_flip() + 
-  xlim(200,0) +
-  xlab(???) + 
-  ylab(TeX('adjusted $r^2$'))
+#models %>% 
+  #arrange(depth) %>% 
+  #ggplot(aes(x = ???, y = ???, color = ???)) + # Hint: what variables should be in the plot?
+  #geom_line() + 
+  #geom_point() + 
+  #coord_flip() + 
+  #xlim(200,0) +
+  #xlab(???) + 
+  #ylab(TeX('adjusted $r^2$'))
   
 ```
 
@@ -233,15 +233,15 @@ Use the function lm() to run a linear regression for your chosen temperature pro
 
 ```{r warning = FALSE}
 # Reminder: lm format is lm(y ~ x)
-best_model <- lm(??? ~ ???, data = df)
+#best_model <- lm(??? ~ ???, data = df)
 
 
-df %>% 
-  ggplot(aes(x = ???, y = ???)) + 
-  geom_lm(best_model) +
-  geom_point(color = "blue") + 
-  xlab(TeX('$TEX^L_{86}$')) +
-  ylab(???)
+#df %>% 
+  #ggplot(aes(x = ???, y = ???)) + 
+  #geom_lm(best_model) +
+  #geom_point(color = "blue") + 
+  #xlab(TeX('$TEX^L_{86}$')) +
+  #ylab(???)
   
 ```
 
@@ -281,31 +281,31 @@ data
 First, use the $TEX_{86}^L$ ratio, your linear regression, and the regressions from Kim et al. (2010) and (2012) to calculate a GDGT-derived temperature. Then, input the standard residual error associated with your model into the dataframe. Finally, plot the derived temperature and associated error vs. age.
 
 ```{r warning = FALSE}
-data <- data %>% mutate(
-  kim2010 = ???, # Hint: calculate the temperature estimate from the relevant equation. 
-  kim2012 = ???, 
-  best_model = ???
-) %>% 
-  gather(model, estimate, kim2010:best_model) %>% 
-  mutate(error = case_when(
-    model == "kim2010" ~ ???, # Hint: this is the contant error cited in the publication.
-    model == "kim2012" ~ ???,
-    model == "best_model" ~ sd(best_model$residuals) # an lm() object contains the residuals which can be accessed with $, and we can calculate the standard deviation with sd().
-  ))
+#data <- data %>% mutate(
+  #kim2010 = ???, # Hint: calculate the temperature estimate from the relevant equation. 
+  #kim2012 = ???, 
+  #best_model = ???
+#) %>% 
+  #gather(model, estimate, kim2010:best_model) %>% 
+  #mutate(error = case_when(
+  #  model == "kim2010" ~ ???, # Hint: this is the contant error cited in the publication.
+  #  model == "kim2012" ~ ???,
+  #  model == "best_model" ~ sd(best_model$residuals) # an lm() object contains the residuals which can be accessed with $, and we can calculate the standard deviation with sd().
+ # ))
 
-data %>% 
-  ggplot(aes(x = ???, # Hint: this should be the age of the sample. 
-             y = ???, # Hint: this should be the temperature estimate.
-             color = ???, # Hint: group by which model the estimate is calculated from
-             ymin = ??? - ???, # Hint: how can you calculate the values for the error bars?
-             ymax = ??? + ???)) + 
-  geom_line() +
-  geom_point() +
-  geom_errorbar() +
-  labs(
-    x = "Year",
-    y = "Estimated Temperature (°C)"
-  )
+#data %>% 
+  #ggplot(aes(x = ???, # Hint: this should be the age of the sample. 
+             #y = ???, # Hint: this should be the temperature estimate.
+             #color = ???, # Hint: group by which model the estimate is calculated from
+             #ymin = ??? - ???, # Hint: how can you calculate the values for the error bars?
+             #ymax = ??? + ???)) + 
+  #geom_line() +
+  #geom_point() +
+  #geom_errorbar() +
+  #labs(
+    #x = "Year",
+    #y = "Estimated Temperature (°C)"
+  #)
 
 ```
 

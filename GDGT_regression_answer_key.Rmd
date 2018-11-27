@@ -31,8 +31,8 @@ source(file.path("scripts", "functions.R"))
 
 ```
 # About this assignment
-* Technical Requirements
-  + Just a browser to use the binder version!
+#### Technical Requirements
+*  Just a browser to use the binder version!
   + If you choose to use this assignment on your own system you will need:
     + R version 3.5.1
     + RStudio version 1.2.981
@@ -40,12 +40,20 @@ source(file.path("scripts", "functions.R"))
     + broom library version 0.5.0
     + stringr version 1.3.1
     + readxl version 1.1.0
-* Conceptual Prerequisites
-  + Students should have a working knowledge of least squares fitting/linear regression of two variables. 
+  + Students are expected to know how to:
+    + use RStudio to view dataframes and plots and knit assignment documents
+    + call variables from dataframes
+    + format basic equations in R (e.g. adding, multiplying, subtracting variables) for calculations
+    + use ggplot to create basic plots
+    
+#### Conceptual Prerequisites
+*   Students should have a working knowledge of least squares fitting/linear regression of two variables. 
   + Students should have a working knowledge of methods for evaluating statistical models and quantifying error. 
   + Students should have a general understanding of paleo-ocean temperature proxies. 
-* Learning Goals
-  + Students will learn computational tools that make calculating, plotting, and evaluating linear regressions fast and efficient. 
+
+
+#### Learning Goals
+*   Students will learn computational tools that make calculating, plotting, and evaluating linear regressions fast and efficient. 
   + Students will learn to compare many linear regressions of a multivariate data set to select an optimal model. 
   + Students will learn to make predictions from a linear regression model and quantify the error associated with the predictions. 
   + Students will compare several GDGT paleo temperature proxy calibrations and their associated errors. 
@@ -176,7 +184,7 @@ models <- models %>%
   grepl("Spring", .$formulas) ~ "Spring",
   grepl("Fall", .$formulas) ~ "Fall",
   grepl("Summer", .$formulas) ~ "Summer"
-  )) %>% 
+  )) %>% #pull out depths from temperature profiles
   mutate(depthint = ifelse(grepl("SST", formulas), 
                            "SST", 
                            str_extract(formulas, "0.*m"))) %>% 
@@ -208,11 +216,11 @@ models %>%
 
 2. Which season(s) and integrated depth(s) of temperature has the most robust relationship with GDGT cyclization?
 
-Answer: The highest adjusted $r^2$ value is found for Winter temperatures at with depth integration to ~150-200 m. (Incidentally, evaluating the model on the basis of any of the other regression statistic yields a simillar result).
+Answer: The highest adjusted $r^2$ value is found for winter temperatures with a depth integration of ~150-200 m. (Incidentally, evaluating the model on the basis of any of the other regression statistic yields a similar result).
 
 3. What can you infer about GDGT production and preservation at these sites based on how the correlation depends on season and depth integration?
 
-Answer: Since the strongest correlation is observed between $TEX_{86}^L$ and the Winter temperature integrated over large depth, it appears that *Thaumarchareota* growth and GDGT production occurs throughout the water column, perhaps especially in winter. 
+Answer: Since the strongest correlation is observed between $TEX_{86}^L$ and the Winter temperature integrated over large depth, it appears that *Thaumarchareota* growth and GDGT production occurs throughout the water column, perhaps with preferential preservation in winter.
 
 ## Calculate the most robust regression for modern Iceland surface sediment
 
@@ -234,7 +242,6 @@ df %>%
   xlab(TeX('$TEX^L_{86}$')) +
   ylab('Temperature in C, Winter 0-200m')
   
-
 ```
 
 ## Comparing models
@@ -247,7 +254,7 @@ Above are two temperature calibrations for $TEX_{86}^L$. The first is from Kim e
 
 5. How do these calibrations compare with your local calibration (e.g. temperature range, $r^2$)? How can you explain these differences?
 
-Answer: The local calibration is confined to a much smaller temperature interval, since the ocean temperarature in Iceland is relatively cool. The slope of the local calibration is also lower, suggesting variation in the $TEX_{86}^L$-T relationship between localities. The degree of fit is better than the global calibrations, supporting the conclusions that the relationship varies with locality. 
+Answer: The local calibration is confined to a much smaller temperature interval, since the ocean temperarature in Iceland is relatively cool. The slope of the local calibration is also lower, suggesting variation in the $TEX_{86}^L$-T relationship between localities. The degree of fit is better than the global calibrations for the temperature range, supporting the conclusions that the relationship varies with locality. 
 
 6. From examining the plots above, what would you estimate the overall error associated with a temperature estimate from $TEX_{86}^L$ to be? How does this compare to your local model?
 
@@ -303,7 +310,13 @@ data %>%
 
 8. What effect does applying a local calibration have on the relative and absolute GDGT-derived temperatures?
 
-Answer: The temperature estimate is systematically higher with the local calibration. The variation in the record is also dampened. 
+Answer: The temperature estimate is systematically higher with the local calibration. The variation in the record is also dampened, but the overall pattern of increases and decreases in temperature is consistent between models.
+
+
+9. What might be a more appropriate estimate of error for GDGT-derived temperature in the core?
+
+Answer: Using the predictive interval would be more appropriate because we are applying a model to predict the response of membrane GDGTs to temperature in the core using a calibration calculated from surface sediments in a trap. 
+
 
 # References
 Harning, D.J., Sepúlveda, J., Cabedo-Sanz, P., Andrews, J.T., Belt, S.T., Dildar, N., Geirsdóttir, Á., Miller, G.H.(2018). Sea ice control on winter subsurface temperatures of the North Iceland Shelf over the last millennium. Paleoceanography and Paleoclimatology, submitted. 
