@@ -4,13 +4,16 @@ geom_lm <- function(lm_fit, level = 0.68)  {
   # Use level = 0.68 for 1 sigma, level = 0.95 for 2 sigma, etc. 
   
   # Calculate fitted values, confidence intervals, and prediction intervals. 
-  predict <- data_frame(x = unlist(lm_fit$model[2]), 
-                        y = unlist(lm_fit$model[1]),
-                        fit = predict(lm_fit),
-                        lwr_conf = predict(lm_fit, interval = "confidence", level = level)[, 2],
-                        upr_conf = predict(lm_fit, interval = "confidence", level = level)[, 3],
-                        lwr_pred = predict(lm_fit, interval = "prediction", level = level)[, 2],
-                        upr_pred = predict(lm_fit, interval = "prediction", level = level)[, 3])
+  predict <- suppressWarnings(
+      tibble(
+          x = unlist(lm_fit$model[2]), 
+          y = unlist(lm_fit$model[1]),
+          fit = predict(lm_fit),
+          lwr_conf = predict(lm_fit, interval = "confidence", level = level)[, 2],
+          upr_conf = predict(lm_fit, interval = "confidence", level = level)[, 3],
+          lwr_pred = predict(lm_fit, interval = "prediction", level = level)[, 2],
+          upr_pred = predict(lm_fit, interval = "prediction", level = level)[, 3]
+      ))
   
   list(
     # Lower confidence interval
